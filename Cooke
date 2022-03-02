@@ -1,30 +1,31 @@
 #include <conio.h>
 #include <stdio.h>
+#include <string.h>
 
 
 class Tea {
 	public:
 		char name[10];
-		char *type[10];
-		int *strength;
-		int *volume;
+		char type[10];
+		int strength;
+		int volume;
 		float sugar;
 
-		int setSTR(int ss) {
+		int setCheck_Strength(int ss) {
 			if (ss > 0 && ss < 8) {
-				return *strength = ss;
+				return strength = ss;
 			} else return false;
 		}
-		int getSTR() {
-			return *strength;
+		int getCheck_Strength() {
+			return strength;
 		}
-		int setCUP(int cc) {
+		int setCheck_Volume(int cc) {
 			if (cc > 99 && cc < 751) {
-				return *volume = cc;
+				return volume = cc;
 			} else return false;
 		}
-		int getCUP() {
-			return *volume;
+		int getCheck_Volume() {
+			return volume;
 		}
 
 		void ch1() {
@@ -32,11 +33,11 @@ class Tea {
 			printf("enter your name: ");
 			scanf("%s", &name[0]);
 			printf("enter type of tea: ");
-			scanf("%s", &*type[0]);
+			scanf("%s", &type[0]);
 			STR:
 			printf("enter tea strength: ");
 			scanf("%i", &ss);
-			if (!setSTR(ss)) {
+			if (!setCheck_Strength(ss)) {
 				printf("incorrect, try agagin\n");
 				goto STR;
 			}
@@ -47,40 +48,40 @@ class Tea {
 			printf("enter your name: ");
 			scanf("%s", &name[0]);
 			printf("enter type of tea: ");
-			scanf("%s", &*type[0]);
+			scanf("%s", &type[0]);
 			STR:
 			printf("enter tea strength: ");
 			scanf("%i", &ss);
-			if (!setSTR(ss)) {
+			if (!setCheck_Strength(ss)) {
 				printf("incorrect, try agagin\n");
 				goto STR;
 			}
 			CUP:
 			printf("enter volume of cup: ");
 			scanf("%i", &cc);
-			if (!setCUP(cc)) {
+			if (!setCheck_Volume(cc)) {
 				printf("incorrect, try agagin\n");
 				goto CUP;
 			}
 		}
 
 		void ch3 () {
-			int ss,cc;
+			int i,ss,cc;
 			printf("enter your name: ");
 			scanf("%s", &name[0]);
 			printf("enter type of tea: ");
-			scanf("%s", &*type[0]);
+			scanf("%s", &type[0]);
 			STR:
 			printf("enter tea strength: ");
 			scanf("%i", &ss);
-			if (!setSTR(ss)) {
+			if (!setCheck_Strength(ss)) {
 				printf("incorrect, try agagin\n");
 				goto STR;
 			}
 			CUP:
 			printf("enter volume of cup: ");
 			scanf("%i", &cc);
-			if (!setCUP(cc)) {
+			if (!setCheck_Volume(cc)) {
 				printf("incorrect, try agagin\n");
 				goto CUP;
 			}
@@ -88,42 +89,36 @@ class Tea {
 			scanf("%f", &sugar);
 		}
 
-		friend bool operator==(Tea &left, Tea &right);
-
 		void out1() {
-			printf("%s here's you %s tea with a strength of %i\n", name, *type, *strength);
+			printf("%s here's you %s tea with a strength of %i\n", name, type, strength);
 		}
 
 		void out2() {
-			printf("%s here's you %s tea with a strength of %i and a cup volume of %i\n", name, *type, *strength, *volume);
+			printf("%s here's you %s tea with a strength of %i and a cup volume of %i\n", name, type, strength, volume);
 		}
 
 		void out3() {
-			printf("%s here's you %s tea with a strength of %i, a cup volume of %i and %1.1f spoons of sugar\n", name, *type, *strength, *volume, sugar);
+			printf("%s here's you %s tea with a strength of %i, a cup volume of %i and %1.1f spoons of sugar\n", name, type, strength, volume, sugar);
 		}
 
+		friend bool operator == (Tea &left, Tea &right);
 };
 
-bool operator==(Tea &left, Tea &right) {
-	int *volume, *strength;
-	char *type[10];
-	if (left.strength == right.strength) {
-		printf("strength is: %i\n", *strength);
-	}
+bool operator == (Tea &left, Tea &right) {
 	if (left.type == right.type) {
-		printf("type is: %s\n", *type);
+		printf("type is:\n");
 	}
 	if (left.volume == right.volume) {
-		printf("volume is: %i\n", *volume);
+		printf("volume is:\n");
 	}
-	return 1;
+	if (left.strength == right.strength) {
+		printf("strength is:\n");
+	}
+	return 0;
 }
 
 int main() {
 	Tea tasty[100];
-	Tea type;
-	Tea volume;
-	Tea strength;
 	int i,n,ch;
 	do {
 		printf("1. enter name, type of tea, number of cups and tea strength\n");
@@ -142,21 +137,32 @@ int main() {
 			for (i = 0; i < n; i++) {
 				tasty[i].out1();
 			}
-			if (type == type) {
-			}
+			if (tasty[i].type == tasty[i].type) {
+				printf("your type: %s\n", tasty[i].type);
+			} else printf("\n");
+			if (tasty[i].strength == tasty[i].strength) {
+				printf("your strength: %i\n", tasty[i].strength);
+			} else printf("\n");
 			printf("happy tea!!!\n\n");
 		}
 		if (ch == 2) {
 			printf("enter number of cups of tea: ");
 			scanf("%i", &n);
-			for (i = 1; i < n + 1; i++) {
+			for (i = 0; i < n; i++) {
 				tasty[i].ch2();
 			}
-			for (i = 1; i < n + 1; i++) {
+			for (i = 0; i < n; i++) {
 				tasty[i].out2();
 			}
-			if (volume == volume) {
-			}
+			if (tasty[i].type == tasty[i].type) {
+				printf("your type: %s\n", tasty[0].type);
+			} else printf("\n");
+			if (tasty[i].strength == tasty[i].strength) {
+				printf("your strength: %i\n", tasty[0].strength);
+			} else printf("\n");
+			if (tasty[i].volume == tasty[i].volume) {
+				printf("your volume: %i\n", tasty[0].volume);
+			} else printf("\n");
 			printf("happy tea!!!\n\n");
 		}
 		if (ch == 3) {
@@ -167,6 +173,15 @@ int main() {
 			}
 			for (i = 1; i < n + 1; i++) {
 				tasty[i].out3();
+			}
+			if (tasty[i].type == tasty[i].type) {
+				printf("your type: %s\n", tasty[0].type);
+			}
+			if (tasty[i].strength == tasty[i].strength) {
+				printf("your strength: %i\n", tasty[0].strength);
+			}
+			if (tasty[i].volume == tasty[i].volume) {
+				printf("your volume: %i\n", tasty[0].volume);
 			}
 			printf("happy tea!!!\n\n");
 		}
