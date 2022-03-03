@@ -105,16 +105,10 @@ class Tea {
 };
 
 bool operator == (Tea &left, Tea &right) {
-	if (left.type == right.type) {
-		printf("type is:\n");
+	if (strcmp (left.type, right.type) == 0) {
+		return true;
 	}
-	if (left.volume == right.volume) {
-		printf("volume is:\n");
-	}
-	if (left.strength == right.strength) {
-		printf("strength is:\n");
-	}
-	return 0;
+	return false;
 }
 
 int main() {
@@ -137,12 +131,13 @@ int main() {
 			for (i = 0; i < n; i++) {
 				tasty[i].out1();
 			}
-			if (tasty[i].type == tasty[i].type) {
-				printf("your type: %s\n", tasty[i].type);
-			} else printf("\n");
-			if (tasty[i].strength == tasty[i].strength) {
-				printf("your strength: %i\n", tasty[i].strength);
-			} else printf("\n");
+			for (i = 0; i < n; i++) {
+				for (int y = i+1; y < n; y++) {
+					if (tasty[i] == tasty[y]) {
+						printf("%s and %s drink: %s\n", tasty[i].name, tasty[y].name, tasty[y].type);
+                    }
+                }
+			}
 			printf("happy tea!!!\n\n");
 		}
 		if (ch == 2) {
@@ -156,13 +151,7 @@ int main() {
 			}
 			if (tasty[i].type == tasty[i].type) {
 				printf("your type: %s\n", tasty[0].type);
-			} else printf("\n");
-			if (tasty[i].strength == tasty[i].strength) {
-				printf("your strength: %i\n", tasty[0].strength);
-			} else printf("\n");
-			if (tasty[i].volume == tasty[i].volume) {
-				printf("your volume: %i\n", tasty[0].volume);
-			} else printf("\n");
+			}
 			printf("happy tea!!!\n\n");
 		}
 		if (ch == 3) {
@@ -176,12 +165,6 @@ int main() {
 			}
 			if (tasty[i].type == tasty[i].type) {
 				printf("your type: %s\n", tasty[0].type);
-			}
-			if (tasty[i].strength == tasty[i].strength) {
-				printf("your strength: %i\n", tasty[0].strength);
-			}
-			if (tasty[i].volume == tasty[i].volume) {
-				printf("your volume: %i\n", tasty[0].volume);
 			}
 			printf("happy tea!!!\n\n");
 		}
